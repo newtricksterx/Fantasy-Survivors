@@ -12,7 +12,7 @@ public class Player : Combatant
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         Move();
     }
@@ -22,9 +22,9 @@ public class Player : Combatant
         float xInput = Input.GetAxisRaw("Horizontal");
         float yInput = Input.GetAxisRaw("Vertical");
 
-        Vector3 moveDelta = new Vector3(xInput * movementSpeed, yInput * movementSpeed);
+        Vector3 moveDelta = new Vector3(xInput, yInput);
 
-        MoveMotor(new Vector3(xInput, yInput, 0));
+        MoveMotor((new Vector3(xInput, yInput, 0)).normalized);
 
         if (moveDelta == Vector3.zero)
         {
@@ -34,17 +34,6 @@ public class Player : Combatant
         {
             anim.SetBool("isMoving", true);
         }
-
     }
 
-    protected override void PlayDeathAnim()
-    {
-        Debug.Log("Death");
-    }
-
-    protected override void OnCollisionEnter2D(Collision2D collision)
-    {
-        base.OnCollisionEnter2D(collision);
-
-    }
 }

@@ -12,8 +12,10 @@ public abstract class Combatant : MovingObject
         hp = maxHP;
     }
 
-    protected virtual void Update()
+    protected override void Update()
     {
+        base.Update();
+
         if(hp <= 0)
         {
             Death();
@@ -26,10 +28,13 @@ public abstract class Combatant : MovingObject
         PlayDeathAnim();
     }
 
-    protected abstract void PlayDeathAnim();
+    protected virtual void PlayDeathAnim()
+    {
+        //Debug.Log("Death");
+    }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Collider: " + gameObject.name);
+        Debug.Log("Collision");
     }
 }

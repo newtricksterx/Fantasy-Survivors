@@ -422,9 +422,9 @@ GameObject:
   - component: {fileID: 572428072}
   - component: {fileID: 572428075}
   - component: {fileID: 572428076}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SkeletonEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -487,12 +487,12 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 124191547
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1889296379, guid: 57b0998ed26a2054b8615fcff5652100, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.64, y: 0.64}
@@ -530,6 +530,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 1.7
   scale: 1.5
+  filter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
   maxHP: 0
   hp: 0
   damageToDeal: 0
@@ -546,7 +560,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.018306196, y: -0.00039720535}
+  m_Offset: {x: -0.017085124, y: -0.03765121}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -557,7 +571,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.23779154, y: 0.32638252}
+  m_Size: {x: 0.09995159, y: 0.2518745}
   m_EdgeRadius: 0
 --- !u!1 &1105295640
 GameObject:
@@ -572,9 +586,9 @@ GameObject:
   - component: {fileID: 1105295642}
   - component: {fileID: 1105295641}
   - component: {fileID: 1105295645}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -593,6 +607,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 2
   scale: 1
+  filter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
   maxHP: 0
   hp: 0
 --- !u!95 &1105295642
@@ -653,12 +681,12 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 124191547
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 1190492756, guid: bcd88057b4d5afe44ac031972ff4304c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.4, y: 0.53}
@@ -695,7 +723,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.005588174, y: -0.055881023}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -706,5 +734,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.53}
+  m_Size: {x: 0.22118059, y: 0.40706182}
   m_EdgeRadius: 0

@@ -14,7 +14,7 @@ public class Enemy : Combatant
         anim = GetComponent<Animator>();
     }
 
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
         Move();
     }
@@ -35,8 +35,4 @@ public class Enemy : Combatant
         MoveMotor((player.transform.position - transform.position).normalized);
     }
 
-    protected override void PlayDeathAnim()
-    {
-        Debug.Log("Death");
-    }
 }
