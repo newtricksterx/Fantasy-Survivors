@@ -36,4 +36,17 @@ public class Player : Combatant
         }
     }
 
+    protected override void OnCollide(Collider2D coll)
+    {
+        if (coll.gameObject.CompareTag("Enemy"))
+        {
+            Enemy enemy = coll.GetComponent<Enemy>();
+            hp -= enemy.damageToDeal;
+        }
+    }
+
+    protected override void PlayDeathAnim()
+    {
+        anim.SetBool("death", true);
+    }
 }

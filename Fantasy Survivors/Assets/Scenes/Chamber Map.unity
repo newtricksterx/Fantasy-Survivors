@@ -528,8 +528,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5c4d32f83a552349bb96091ca10ef2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1.7
-  scale: 1.5
   filter:
     useTriggers: 0
     useLayerMask: 0
@@ -544,9 +542,11 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  movementSpeed: 1.7
+  scale: 1.5
   maxHP: 0
   hp: 0
-  damageToDeal: 0
+  damageToDeal: 2
 --- !u!61 &572428076
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -605,8 +605,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e39c73c15927649953a01c388ee71c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 2
-  scale: 1
   filter:
     useTriggers: 0
     useLayerMask: 0
@@ -621,8 +619,10 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  maxHP: 0
-  hp: 0
+  movementSpeed: 2
+  scale: 1
+  maxHP: 20
+  hp: 20
 --- !u!95 &1105295642
 Animator:
   serializedVersion: 4

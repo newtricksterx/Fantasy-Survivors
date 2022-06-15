@@ -14,7 +14,7 @@ public class Enemy : Combatant
         anim = GetComponent<Animator>();
     }
 
-    protected void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         Move();
     }
