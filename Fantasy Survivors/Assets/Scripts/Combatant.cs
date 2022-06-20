@@ -7,8 +7,9 @@ public abstract class Combatant : MovingObject
     public float maxHP;
     [SerializeField] protected float hp;
 
-    private void Awake()
+    protected override void Start()
     {
+        base.Start();
         hp = maxHP;
     }
 
@@ -31,5 +32,10 @@ public abstract class Combatant : MovingObject
     protected virtual void PlayDeathAnim()
     {
         //Debug.Log("Death");
+    }
+
+    protected virtual void ReceiveDamage(Damage damage)
+    {
+        hp -= damage.damageToDeal;
     }
 }

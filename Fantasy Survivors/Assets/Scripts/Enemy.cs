@@ -5,7 +5,9 @@ using UnityEngine;
 public class Enemy : Combatant
 {
     public float damageToDeal;
+    public float attackCooldown = 0.2f;
 
+    private float lastAttack = -0.2f;
     private GameObject player;
     private Animator anim;
     private void Awake()
@@ -33,6 +35,23 @@ public class Enemy : Combatant
         }
 
         MoveMotor((player.transform.position - transform.position).normalized);
+    }
+
+    protected override void OnCollide(Collider2D coll)
+    {
+        if (coll.gameObject.CompareTag("Player"))
+        {
+            Damage damage = new Damage
+            {
+                damageToDeal = damageToDeal
+            };
+
+            if(Time.time - lastAttack > attackCooldown)
+            {
+                coll.SendMessage("ReceiveDamage", damage);
+                lastAttack = Time.time;
+            }
+        }
     }
 
 }

@@ -14,7 +14,10 @@ public class Player : Combatant
     // Update is called once per frame
     protected virtual void FixedUpdate()
     {
-        Move();
+        if(hp > 0)
+        {
+            Move();
+        }
     }
 
     protected void Move()
@@ -41,7 +44,6 @@ public class Player : Combatant
         if (coll.gameObject.CompareTag("Enemy"))
         {
             Enemy enemy = coll.GetComponent<Enemy>();
-            hp -= enemy.damageToDeal;
         }
     }
 
