@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1794096296120218517}
   - component: {fileID: 5370791489794536996}
-  - component: {fileID: 5259682896022924651}
+  - component: {fileID: 7350535473611808735}
+  - component: {fileID: 6994721488455286899}
   m_Layer: 0
   m_Name: XP Gem
   m_TagString: Untagged
@@ -85,8 +86,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &5259682896022924651
-CircleCollider2D:
+--- !u!114 &7350535473611808735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4306248552847238342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab5c52c390958844a8789b74aa434d7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instanceDuration: 5
+  experienceOnPickup: 10
+--- !u!61 &6994721488455286899
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -98,6 +113,16 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0032798648, y: -0.0045993775}
+  m_SpriteTilingProperty:
+    border: {x: 0.01, y: 0.01, z: 0.01, w: 0.049999997}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.19813722
+  m_Size: {x: 0.35639083, y: 0.29498526}
+  m_EdgeRadius: 0

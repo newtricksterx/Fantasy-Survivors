@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PickupExperience : Pickup
 {
-    public float experienceOnPickup;
+    public int experienceOnPickup;
 
     protected override void OnCollide(Collider2D coll)
     {
         if (coll.gameObject.CompareTag("Player"))
         {
-            GameManager.instance.playerExperience += experienceOnPickup;
+            GameManager.instance.GrantXP(experienceOnPickup);
             Destroy(gameObject);
         }
     }

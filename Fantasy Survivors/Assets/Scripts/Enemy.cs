@@ -41,6 +41,7 @@ public class Enemy : Combatant
     {
         base.Death();
         Destroy(gameObject);
+        PickupManager.instance.SpawnExperience(transform.position);
     }
 
     protected override void OnCollide(Collider2D coll)

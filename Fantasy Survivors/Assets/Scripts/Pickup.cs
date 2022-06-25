@@ -22,6 +22,7 @@ public class Pickup : Collidable
         {
             Destroy(gameObject);
         }
+
         base.Update();
     }
 }
