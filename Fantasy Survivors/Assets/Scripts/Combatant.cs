@@ -6,11 +6,13 @@ public abstract class Combatant : MovingObject
 {
     public float maxHP;
     [SerializeField] protected float hp;
+    protected HurtEffect hurtEffect;
 
     protected override void Start()
     {
         base.Start();
         hp = maxHP;
+        hurtEffect = GetComponent<HurtEffect>();
     }
 
     protected override void Update()

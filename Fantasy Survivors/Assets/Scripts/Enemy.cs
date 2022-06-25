@@ -37,6 +37,12 @@ public class Enemy : Combatant
         MoveMotor((player.transform.position - transform.position).normalized);
     }
 
+    protected override void Death()
+    {
+        base.Death();
+        Destroy(gameObject);
+    }
+
     protected override void OnCollide(Collider2D coll)
     {
         if (coll.gameObject.CompareTag("Player"))
@@ -50,6 +56,9 @@ public class Enemy : Combatant
             {
                 coll.SendMessage("ReceiveDamage", damage);
                 lastAttack = Time.time;
+
+                HurtEffect player = coll.gameObject.GetComponent<HurtEffect>();
+                player.Flash();
             }
         }
     }

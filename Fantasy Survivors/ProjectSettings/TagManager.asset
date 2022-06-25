@@ -54,3 +54,6 @@ TagManager:
   - name: Collisions
     uniqueID: 2801473841
     locked: 0
+  - name: Text
+    uniqueID: 2017526211
+    locked: 0

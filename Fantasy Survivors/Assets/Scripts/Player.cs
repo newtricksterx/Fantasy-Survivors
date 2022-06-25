@@ -5,10 +5,11 @@ using UnityEngine;
 public class Player : Combatant
 {
     private Animator anim;
-
+    public HealthBar healthBar;
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        healthBar.SetMaxHealth(maxHP);
     }
 
     // Update is called once per frame
@@ -16,6 +17,7 @@ public class Player : Combatant
     {
         if(hp > 0)
         {
+            //Debug.Log("Can Move");
             Move();
         }
     }
@@ -24,6 +26,8 @@ public class Player : Combatant
     {
         float xInput = Input.GetAxisRaw("Horizontal");
         float yInput = Input.GetAxisRaw("Vertical");
+
+        //Debug.Log(xInput);
 
         Vector3 moveDelta = new Vector3(xInput, yInput);
 
@@ -36,6 +40,7 @@ public class Player : Combatant
         else
         {
             anim.SetBool("isMoving", true);
+            //Debug.Log("Player is Moving");
         }
     }
 
@@ -47,8 +52,20 @@ public class Player : Combatant
         }
     }
 
+    protected override void Death()
+    {
+        base.Death();
+        gameObject.SetActive(false);
+    }
+
     protected override void PlayDeathAnim()
     {
         anim.SetBool("death", true);
     }
+    protected override void ReceiveDamage(Damage damage)
+    {
+        base.ReceiveDamage(damage);
+        healthBar.SetHealth(hp);
+    }
+
 }
