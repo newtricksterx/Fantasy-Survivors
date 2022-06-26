@@ -6,7 +6,8 @@ public class Pickup : Collidable
 {
     public float instanceDuration;
 
-    private GameObject player;
+    protected GameObject player;
+
     private float timeToDespawn;
 
     // Start is called before the first frame update

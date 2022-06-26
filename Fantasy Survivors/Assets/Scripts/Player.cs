@@ -68,4 +68,16 @@ public class Player : Combatant
         healthBar.SetHealth(hp);
     }
 
+    public void GrantHP(float hpToAdd)
+    {
+        hp += hpToAdd;
+
+        if(hp > maxHP)
+        {
+            hp = maxHP;
+        }
+
+        healthBar.SetHealth(hp);
+    }
+
 }
