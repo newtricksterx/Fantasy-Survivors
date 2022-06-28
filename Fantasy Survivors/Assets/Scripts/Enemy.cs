@@ -25,7 +25,7 @@ public class Enemy : Combatant
     {
         float dist = Vector3.Distance(player.transform.position, transform.position);
 
-        if (dist == 0)
+        if (dist == 0 || movementSpeed == 0)
         {
             anim.SetBool("isMoving", false);
         }
