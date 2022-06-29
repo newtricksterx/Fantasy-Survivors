@@ -10,13 +10,11 @@ public class SelectorManager : MonoBehaviour
     public int abilityIndex;
 
     public Text selectText;
-
-    //public List<SpawnAbilities> spawnAbilities;
-    //List<GameObject> abilitiesGameObjects;
+    public Text abilityName;
 
     public void GetAbility()
     {
-        if (AbilitiesManager.instance.maxAbilityLevel <= AbilitiesManager.instance.abilitiesToLevels[AbilitiesManager.instance.abilityGameObjects[abilityIndex]])
+        if (AbilitiesManager.instance.maxAbilityLevel <= AbilitiesManager.instance.abilitiesToLevels[AbilitiesManager.instance.GetAbilityGameObject(abilityIndex)])
         {
             selectText.text = "MAX";
         }
@@ -27,34 +25,38 @@ public class SelectorManager : MonoBehaviour
 
         //Debug.Log(AbilitiesManager.instance.spawnAbilitiesGameObjects.Count);
 
-        abilityIndex = Random.Range(0, AbilitiesManager.instance.spawnAbilitiesGameObjects.Count);
+        abilityIndex = Random.Range(0, AbilitiesManager.instance.spawnAbilities.Length);
 
-        while (GameManager.instance.abilitiesPicked.Contains(AbilitiesManager.instance.abilityGameObjects[abilityIndex]))
+        while (GameManager.instance.abilitiesPicked.Contains(AbilitiesManager.instance.GetAbilityGameObject(abilityIndex)))
         {
-            abilityIndex = Random.Range(0, AbilitiesManager.instance.spawnAbilitiesGameObjects.Count);
+            abilityIndex = Random.Range(0, AbilitiesManager.instance.spawnAbilities.Length);
         }
 
-        imageOfAbility.sprite = AbilitiesManager.instance.spawnAbilitiesGameObjects[abilityIndex].GetComponent<SpriteRenderer>().sprite;
+        imageOfAbility.sprite = AbilitiesManager.instance.GetSpawnGameObject(abilityIndex).gameObject.GetComponent<SpriteRenderer>().sprite;
 
-        GameManager.instance.abilitiesPicked.Add(AbilitiesManager.instance.abilityGameObjects[abilityIndex]);
+        GameManager.instance.abilitiesPicked.Add(AbilitiesManager.instance.GetAbilityGameObject(abilityIndex));
+
+        abilityName.text = AbilitiesManager.instance.GetAbilityGameObject(abilityIndex).GetComponent<Ability>().abilityName;
     }
 
     public void Select()
     {
-        if(AbilitiesManager.instance.maxAbilityLevel <= AbilitiesManager.instance.abilitiesToLevels[AbilitiesManager.instance.abilityGameObjects[abilityIndex]]){
+        GameObject abilityGameObjectSelected = AbilitiesManager.instance.GetAbilityGameObject(abilityIndex);
+
+        if (AbilitiesManager.instance.maxAbilityLevel <= AbilitiesManager.instance.abilitiesToLevels[abilityGameObjectSelected]){
             GameManager.instance.OnSelection();
             return;
         }
 
         if (AbilitiesManager.instance.spawnAbilities[abilityIndex].enableAbility)
         {
-            Ability ability = AbilitiesManager.instance.abilityGameObjects[abilityIndex].GetComponent<Ability>();
+            Ability ability = AbilitiesManager.instance.GetAbilityGameObject(abilityIndex).GetComponent<Ability>();
 
             // level up the active ability
-            AbilitiesManager.instance.abilitiesToLevels[AbilitiesManager.instance.abilityGameObjects[abilityIndex]] += 1;
+            AbilitiesManager.instance.abilitiesToLevels[abilityGameObjectSelected] += 1;
             ability.LevelEffect();
             
-            AbilitiesManager.instance.ShowLevels(AbilitiesManager.instance.abilityGameObjects[abilityIndex]);
+            AbilitiesManager.instance.ShowLevels(abilityGameObjectSelected);
         }
         else
         {

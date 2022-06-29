@@ -159,6 +159,7 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  abilityName: Blast Pulse
   levelEffect:
   - 1.5
   - 1.7

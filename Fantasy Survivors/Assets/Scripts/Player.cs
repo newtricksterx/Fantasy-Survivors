@@ -24,10 +24,12 @@ public class Player : Combatant
 
     protected void Move()
     {
+        //Debug.Log("is moving");
+
         float xInput = Input.GetAxisRaw("Horizontal");
         float yInput = Input.GetAxisRaw("Vertical");
 
-        //Debug.Log(xInput);
+        Debug.Log(xInput);
 
         Vector3 moveDelta = new Vector3(xInput, yInput);
 

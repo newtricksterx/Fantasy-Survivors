@@ -66,7 +66,7 @@ public class Frostbite : Ability
         {
             Enemy randomEnemy = GetRandomEnemy();
 
-            Debug.Log("hit");
+            //Debug.Log("hit");
             StartCoroutine(FreezeEnemy(randomEnemy));
         }
     }

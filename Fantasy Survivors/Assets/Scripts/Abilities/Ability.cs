@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Ability : Collidable
 {
-    public List<float> levelEffect;  
+    public string abilityName;
+    public List<float> levelEffect;
+
 
     public virtual void LevelEffect()
     {

@@ -8,31 +8,37 @@ public class AbilitiesManager : MonoBehaviour
 
     public int maxAbilityLevel = 5;
 
-    // abilities
-    public List<SpawnAbilities> spawnAbilities;
-    public List<GameObject> abilityGameObjects;
-    public List<GameObject> spawnAbilitiesGameObjects;
+    public SpawnAbilities[] spawnAbilities;
+    //public List<GameObject> abilityGameObjects;
+    //public List<GameObject> spawnAbilitiesGameObjects;
     public Dictionary<GameObject, int> abilitiesToLevels;
 
     // Start is called before the first frame update
     void Awake()
     {
-        abilitiesToLevels = new Dictionary<GameObject, int>();
-
         instance = this;
 
-        foreach (SpawnAbilities s in AbilitiesManager.instance.spawnAbilities)
+        abilitiesToLevels = new Dictionary<GameObject, int>();
+
+        spawnAbilities = FindObjectsOfType<SpawnAbilities>();
+
+        /*
+        foreach (SpawnAbilities s in spawnAbilities)
         {
             spawnAbilitiesGameObjects.Add(s.gameObject);
+            abilityGameObjects.Add(s.abilityToSpawn);
+        }
+        */
+
+        foreach (SpawnAbilities go in spawnAbilities) //abilityGameObjects)
+        {
+            abilitiesToLevels.Add(go.abilityToSpawn, 0);
+            Ability ability = go.abilityToSpawn.GetComponent<Ability>();
+            ability.LevelEffect();
+            ShowLevels(go.abilityToSpawn);
         }
 
-        foreach (GameObject go in abilityGameObjects)
-        {
-            abilitiesToLevels.Add(go, 0);
-            Ability ability = go.GetComponent<Ability>();
-            ability.LevelEffect();
-            ShowLevels(go);
-        }
+        Debug.Log(FindObjectsOfType<SpawnAbilities>().Length);
     }
 
     private void Update()
@@ -46,5 +52,20 @@ public class AbilitiesManager : MonoBehaviour
     public void ShowLevels(GameObject ability)
     {
         Debug.Log( ability.name + ", " + abilitiesToLevels[ability].ToString());
+    }
+
+    public GameObject GetAbilityGameObject(int index)
+    {
+        return spawnAbilities[index].abilityToSpawn;
+    }
+
+    public GameObject GetSpawnGameObject(int index)
+    {
+        return spawnAbilities[index].gameObject;
+    }
+
+    public SpawnAbilities GetSpawnScript(int index)
+    {
+        return spawnAbilities[index];
     }
 }
