@@ -32,6 +32,9 @@ public class GameManager : MonoBehaviour
     // array/list of abilities as options already
     public List<GameObject> abilitiesPicked;
 
+    // lootbox
+    public GameObject lootboxPanel;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -96,6 +99,12 @@ public class GameManager : MonoBehaviour
     {
         abilitySelectCanvas.SetActive(false);
         abilitiesPicked.Clear();
+        Time.timeScale = 1f;
+    }
+
+    public void OnConfirm()
+    {
+        lootboxPanel.SetActive(false);
         Time.timeScale = 1f;
     }
 }

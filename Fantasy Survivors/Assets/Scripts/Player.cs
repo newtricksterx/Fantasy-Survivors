@@ -10,6 +10,7 @@ public class Player : Combatant
     {
         anim = GetComponent<Animator>();
         healthBar.SetMaxHealth(maxHP);
+        healthBar.SetHealth(maxHP);
     }
 
     // Update is called once per frame

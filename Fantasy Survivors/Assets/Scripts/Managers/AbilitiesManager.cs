@@ -7,10 +7,9 @@ public class AbilitiesManager : MonoBehaviour
     public static AbilitiesManager instance;
 
     public int maxAbilityLevel = 5;
+    public int maxNumberOfAbilities = 5;
 
     public SpawnAbilities[] spawnAbilities;
-    //public List<GameObject> abilityGameObjects;
-    //public List<GameObject> spawnAbilitiesGameObjects;
     public Dictionary<GameObject, int> abilitiesToLevels;
 
     // Start is called before the first frame update
@@ -21,14 +20,6 @@ public class AbilitiesManager : MonoBehaviour
         abilitiesToLevels = new Dictionary<GameObject, int>();
 
         spawnAbilities = FindObjectsOfType<SpawnAbilities>();
-
-        /*
-        foreach (SpawnAbilities s in spawnAbilities)
-        {
-            spawnAbilitiesGameObjects.Add(s.gameObject);
-            abilityGameObjects.Add(s.abilityToSpawn);
-        }
-        */
 
         foreach (SpawnAbilities go in spawnAbilities) //abilityGameObjects)
         {
@@ -67,5 +58,20 @@ public class AbilitiesManager : MonoBehaviour
     public SpawnAbilities GetSpawnScript(int index)
     {
         return spawnAbilities[index];
+    }
+
+    public int GetNumberOfEnabledAbilities()
+    {
+        int num = 0;
+
+        foreach(SpawnAbilities s in spawnAbilities)
+        {
+            if (s.enableAbility)
+            {
+                num++;
+            }
+        }
+
+        return num;
     }
 }
