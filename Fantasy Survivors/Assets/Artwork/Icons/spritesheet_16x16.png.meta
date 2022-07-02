@@ -271,7 +271,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -279,6 +279,27 @@ TextureImporter:
       bones: []
       spriteID: 2c3c4c0551877ab4abe5065b860f666a
       internalID: 559531149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: armor
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 336
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7399559be5c33a94283f8d2443231c79
+      internalID: 1874510915
       vertices: []
       indices: 
       edges: []
@@ -295,6 +316,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       blade: 1543647692
+      armor: 1874510915
       frostbite_icon: 1953957051
       fireballs_icon: 101137849
       killaura_icon: 1319950004

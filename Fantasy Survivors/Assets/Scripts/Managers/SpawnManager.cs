@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    public static SpawnManager instance;
 
     // enemies to spawn
     public List<GameObject> listOfEnemyPrefabs = new List<GameObject>();
+
+    public GameObject undeadBoss;
+
+    public float timeSpawnBoss;
 
     public float xMax;
     public float xMin;
@@ -20,22 +25,36 @@ public class SpawnManager : MonoBehaviour
     public GameObject pickupHealthpack;
     public int maxHealthpacks;
 
-    // Start is called before the first frame update
-    void Start()
+    // spawn healthpacks
+    public float healhpackCooldown;
+    private float lastSpawnedHealthpack;
+
+    // time to spawn boss
+    public float bossCooldown;
+    private float lastSpawnedBoss;
+    private void Awake()
     {
-        
+        instance = this;
+        lastSpawnedHealthpack = 0f;
+        lastSpawnedBoss = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Time.time - spawnCooldown >= spawnTime)
+        if(Mathf.RoundToInt(Time.timeSinceLevelLoad) > 0 && Mathf.RoundToInt(Time.timeSinceLevelLoad) % timeSpawnBoss == 0 && Time.timeSinceLevelLoad - bossCooldown >= lastSpawnedBoss)
         {
-            SpawnEnemy();
-            spawnTime = Time.time;
+            SpawnUndeadBoss();
+            lastSpawnedBoss = Time.timeSinceLevelLoad;
         }
 
-        if(GameObject.FindObjectsOfType<PickupHealthPack>().Length < maxHealthpacks)
+        if(Time.timeSinceLevelLoad - spawnCooldown >= spawnTime)
+        {
+            SpawnEnemy();
+            spawnTime = Time.timeSinceLevelLoad;
+        }
+
+        if(Time.timeSinceLevelLoad - lastSpawnedHealthpack >= healhpackCooldown && FindObjectsOfType<PickupHealthPack>().Length < maxHealthpacks)
         {
             SpawnHealthPack();
         }
@@ -47,7 +66,24 @@ public class SpawnManager : MonoBehaviour
 
         int randomIndex = Random.Range(0, listOfEnemyPrefabs.Count);
 
-        Instantiate(listOfEnemyPrefabs[randomIndex], spawnPosition, Quaternion.identity);
+        GameObject enemyInstance = Instantiate(listOfEnemyPrefabs[randomIndex], spawnPosition, Quaternion.identity);
+
+        if(Mathf.RoundToInt(Time.timeSinceLevelLoad / 60) > 0)
+        {
+            Enemy enemy = enemyInstance.GetComponent<Enemy>();
+
+            int multiplier = Mathf.RoundToInt(Time.timeSinceLevelLoad / 60);
+
+            enemy.SetInitialHealth(enemy.maxHP * multiplier);
+        }
+
+    }
+
+    void SpawnUndeadBoss()
+    {
+        Vector2 spawnPosition = GetSpawnPosition();
+
+        Instantiate(undeadBoss, spawnPosition, Quaternion.identity);
     }
 
     void SpawnHealthPack()

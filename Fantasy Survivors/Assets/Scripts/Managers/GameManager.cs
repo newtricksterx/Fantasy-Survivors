@@ -35,10 +35,24 @@ public class GameManager : MonoBehaviour
     // lootbox
     public GameObject lootboxPanel;
 
+    // pause menu
+    public GameObject pauseMenu;
+
+    // game over panel
+    public GameObject gameOverPanel;
+
+
+
     // Start is called before the first frame update
     void Awake()
     {
         instance = this;
+
+        if (CharacterInfoManager.instance != null)
+        {
+            SetCharacterInfo();
+        }
+
         xpTableIndex = 0;
         
         experienceBar.ResetExpBar();
@@ -56,11 +70,24 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         UpdateTime();
+
+        IsGameOver();
+
+        if (Input.GetKeyDown(KeyCode.Escape) && !pauseMenu.activeInHierarchy)
+        {
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0f;
+        }
+        else if(Input.GetKeyDown(KeyCode.Escape) && pauseMenu.activeInHierarchy)
+        {
+            pauseMenu.SetActive(false);
+            Time.timeScale = 1f;
+        }
     }
 
     void UpdateTime()
     {
-        timeText.text = (Mathf.Round(Time.time)).ToString();
+        timeText.text = (Mathf.Round(Time.timeSinceLevelLoad)).ToString();
     }
 
     public void ShowText(string msg, int fontsize, Color color, Vector3 position, Vector3 motion, float duration)
@@ -88,6 +115,10 @@ public class GameManager : MonoBehaviour
         experienceBar.SetMaxExp(xpTable[xpTableIndex]);
         experienceBar.SetLevelText(xpTableIndex);
 
+        selector1.gameObject.SetActive(true);
+        selector2.gameObject.SetActive(true);
+        selector3.gameObject.SetActive(true);
+
         selector1.GetAbility();
         selector2.GetAbility();
         selector3.GetAbility();
@@ -106,5 +137,42 @@ public class GameManager : MonoBehaviour
     {
         lootboxPanel.SetActive(false);
         Time.timeScale = 1f;
+    }
+
+    public void IsGameOver()
+    {
+        if(GameObject.Find("Player") == null)
+        {
+            StartCoroutine(GameOver());
+        }
+    }
+
+    public IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(3f);
+
+        gameOverPanel.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void SetCharacterInfo()
+    {
+        player.GetComponent<SpriteRenderer>().sprite = CharacterInfoManager.instance.characterSprite;
+        player.GetComponent<Animator>().runtimeAnimatorController = CharacterInfoManager.instance.animController;
+
+        GameObject startingAbility = CharacterInfoManager.instance.startingAbility;
+        foreach(SpawnAbilities s in FindObjectsOfType<SpawnAbilities>())
+        {
+            if(s.gameObject.name == startingAbility.name)
+            {
+                s.EnableAbility();
+            }
+            else
+            {
+                s.DisableAbility();
+            }
+        }
+
+        player.GetComponent<SpriteRenderer>().flipX = CharacterInfoManager.instance.flipPlayer;
     }
 }

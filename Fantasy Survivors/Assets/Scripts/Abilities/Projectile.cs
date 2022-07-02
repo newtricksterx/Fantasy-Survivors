@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : Ability
+public class Projectile : Collidable
 {
     public float projectileSpeed;
     public float damageToDealMin;

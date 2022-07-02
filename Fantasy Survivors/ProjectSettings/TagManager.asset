@@ -49,18 +49,21 @@ TagManager:
   - name: Walls
     uniqueID: 1187720169
     locked: 0
+  - name: Pickups
+    uniqueID: 1806283193
+    locked: 0
   - name: Actor
     uniqueID: 124191547
     locked: 0
   - name: Collisions
     uniqueID: 2801473841
     locked: 0
+  - name: Animation
+    uniqueID: 2412904327
+    locked: 0
   - name: Text
     uniqueID: 2017526211
     locked: 0
   - name: UI
     uniqueID: 3286462901
-    locked: 0
-  - name: Animation
-    uniqueID: 2412904327
     locked: 0

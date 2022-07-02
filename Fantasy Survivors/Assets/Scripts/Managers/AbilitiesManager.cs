@@ -29,7 +29,7 @@ public class AbilitiesManager : MonoBehaviour
             ShowLevels(go.abilityToSpawn);
         }
 
-        Debug.Log(FindObjectsOfType<SpawnAbilities>().Length);
+        //Debug.Log(FindObjectsOfType<SpawnAbilities>().Length);
     }
 
     private void Update()
@@ -70,6 +70,22 @@ public class AbilitiesManager : MonoBehaviour
             {
                 num++;
             }
+        }
+
+        return num;
+    }
+
+    public int GetNumOfMaxLevelAbilities()
+    {
+        int num = 0;
+
+
+        foreach(GameObject go in abilitiesToLevels.Keys)
+        {
+            if (abilitiesToLevels[go] >= maxAbilityLevel)
+            {
+                num++;
+            } 
         }
 
         return num;

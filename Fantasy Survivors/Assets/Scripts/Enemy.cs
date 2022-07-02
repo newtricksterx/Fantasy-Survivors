@@ -7,21 +7,25 @@ public class Enemy : Combatant
     public float damageToDeal;
     public float attackCooldown = 0.2f;
 
-    private float lastAttack = -0.2f;
-    private GameObject player;
-    private Animator anim;
-    private void Awake()
+    protected float lastAttack;
+    protected GameObject player;
+    protected Animator anim;
+    protected virtual void Awake()
     {
         player = GameObject.Find("Player");
         anim = GetComponent<Animator>();
+        lastAttack = -attackCooldown;
     }
 
     protected virtual void FixedUpdate()
     {
-        Move();
+        if(player != null)
+        {
+            Move();
+        }
     }
 
-    protected void Move()
+    protected virtual void Move()
     {
         float dist = Vector3.Distance(player.transform.position, transform.position);
 
@@ -40,18 +44,39 @@ public class Enemy : Combatant
     protected override void Death()
     {
         base.Death();
+        Drop();
         Destroy(gameObject);
-        PickupManager.instance.SpawnExperience(transform.position);
     }
 
     protected override void OnCollide(Collider2D coll)
     {
         if (coll.gameObject.CompareTag("Player"))
         {
-            Damage damage = new Damage
+
+            float reduceDamagebyBy = 0f;
+            Armor armor = FindObjectOfType<Armor>();
+
+            if (armor.gameObject.activeInHierarchy)
             {
-                damageToDeal = damageToDeal
-            };
+                reduceDamagebyBy = armor.armorValue;
+            }
+
+            Damage damage;
+
+            if (damageToDeal - reduceDamagebyBy < 0)
+            {
+                damage = new Damage
+                {
+                    damageToDeal = 0
+                };
+            }
+            else
+            {
+                damage = new Damage
+                {
+                    damageToDeal = damageToDeal - reduceDamagebyBy
+                };
+            }
 
             if(Time.time - lastAttack > attackCooldown)
             {
@@ -64,4 +89,14 @@ public class Enemy : Combatant
         }
     }
 
+    protected virtual void Drop()
+    {
+        PickupManager.instance.SpawnExperience(transform.position);
+    }
+
+    public void SetInitialHealth(float init_hp)
+    {
+        maxHP = init_hp;
+        hp = init_hp;
+    }
 }

@@ -61,9 +61,4 @@ public class ProjectilePulse : Projectile
             Destroy(gameObject);
         }
     }
-
-    public override void LevelEffect()
-    {
-        projectileSpeed = levelEffect[AbilitiesManager.instance.abilitiesToLevels[gameObject]];
-    }
 }

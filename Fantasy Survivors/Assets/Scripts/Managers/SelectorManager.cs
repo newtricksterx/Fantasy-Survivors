@@ -14,6 +14,22 @@ public class SelectorManager : MonoBehaviour
 
     public void GetAbility()
     {
+        int numAvailableAbilities = AbilitiesManager.instance.abilitiesToLevels.Count - AbilitiesManager.instance.GetNumOfMaxLevelAbilities();
+
+        if(numAvailableAbilities <= GameManager.instance.abilitiesPicked.Count)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
+        abilityIndex = Random.Range(0, AbilitiesManager.instance.spawnAbilities.Length);
+
+        while (GameManager.instance.abilitiesPicked.Contains(AbilitiesManager.instance.GetAbilityGameObject(abilityIndex)) || AbilitiesManager.instance.maxAbilityLevel <= AbilitiesManager.instance.abilitiesToLevels[AbilitiesManager.instance.GetAbilityGameObject(abilityIndex)])
+        {
+            abilityIndex = Random.Range(0, AbilitiesManager.instance.spawnAbilities.Length);
+        }
+
+        /*
         if (AbilitiesManager.instance.maxAbilityLevel <= AbilitiesManager.instance.abilitiesToLevels[AbilitiesManager.instance.GetAbilityGameObject(abilityIndex)])
         {
             selectText.text = "MAX";
@@ -21,16 +37,7 @@ public class SelectorManager : MonoBehaviour
         else
         {
             selectText.text = "SELECT";
-        }
-
-        //Debug.Log(AbilitiesManager.instance.spawnAbilitiesGameObjects.Count);
-
-        abilityIndex = Random.Range(0, AbilitiesManager.instance.spawnAbilities.Length);
-
-        while (GameManager.instance.abilitiesPicked.Contains(AbilitiesManager.instance.GetAbilityGameObject(abilityIndex)))
-        {
-            abilityIndex = Random.Range(0, AbilitiesManager.instance.spawnAbilities.Length);
-        }
+        */
 
         imageOfAbility.sprite = AbilitiesManager.instance.GetSpawnGameObject(abilityIndex).gameObject.GetComponent<SpriteRenderer>().sprite;
 
