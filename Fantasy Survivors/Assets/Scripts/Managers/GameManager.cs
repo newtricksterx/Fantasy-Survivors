@@ -56,6 +56,9 @@ public class GameManager : MonoBehaviour
     // list of maps
     public List<GameObject> maps;
 
+    // object enemy pooler
+    public GameObject enemyPooler;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -241,5 +244,22 @@ public class GameManager : MonoBehaviour
                 map.SetActive(false);
             }
         }
+    }
+
+    public void DespawnEnemyObject(Enemy enemy)
+    {
+        ObjectPooler[] enemyPoolers = enemyPooler.GetComponents<ObjectPooler>();
+        int numOfEnemies = enemyPoolers.Length;
+
+        for (int i = 0; i < numOfEnemies; i++)
+        {
+            if(enemyPoolers[i].poolerName == enemy.enemyName)
+            {
+                enemyPoolers[i].DestroyEnemy(enemy.gameObject);
+                return;
+            }
+        }
+
+        Destroy(enemy.gameObject);
     }
 }

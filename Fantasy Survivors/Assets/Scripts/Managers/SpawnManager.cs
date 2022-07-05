@@ -32,6 +32,9 @@ public class SpawnManager : MonoBehaviour
     // time to spawn boss
     public float bossCooldown;
     private float lastSpawnedBoss;
+
+    // object enemy pooler
+    public GameObject enemyPoolerObject;
     private void Awake()
     {
         instance = this;
@@ -64,9 +67,19 @@ public class SpawnManager : MonoBehaviour
     {
         Vector2 spawnPosition = GetSpawnPosition();
 
-        int randomIndex = Random.Range(0, listOfEnemyPrefabs.Count);
+        ObjectPooler[] enemyPoolers = enemyPoolerObject.GetComponents<ObjectPooler>();
 
-        GameObject enemyInstance = Instantiate(listOfEnemyPrefabs[randomIndex], spawnPosition, Quaternion.identity);
+        int numOfEnemies = enemyPoolers.Length;
+
+        int randomIndex = Random.Range(0, numOfEnemies);
+
+        ObjectPooler enemyPoolerPicked = enemyPoolers[randomIndex];
+
+        GameObject enemyInstance = enemyPoolerPicked.SpawnObject(spawnPosition);
+
+        //int randomIndex = Random.Range(0, listOfEnemyPrefabs.Count);
+
+        //GameObject enemyInstance = Instantiate(listOfEnemyPrefabs[randomIndex], spawnPosition, Quaternion.identity);
 
         if(Mathf.RoundToInt(Time.timeSinceLevelLoad / 60) > 0)
         {
@@ -76,7 +89,7 @@ public class SpawnManager : MonoBehaviour
 
             enemy.SetInitialHealth(enemy.maxHP * multiplier);
         }
-
+        
     }
 
     void SpawnUndeadBoss()

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : Combatant
 {
+    public string enemyName;
+
     public float damageToDeal;
     public float attackCooldown = 0.2f;
 
@@ -45,7 +47,11 @@ public class Enemy : Combatant
     {
         base.Death();
         Drop();
-        Destroy(gameObject);
+
+        this.gameObject.SetActive(false);
+        GameManager.instance.DespawnEnemyObject(this);
+        hp = maxHP;
+        //Destroy(gameObject);
     }
 
     protected override void OnCollide(Collider2D coll)
