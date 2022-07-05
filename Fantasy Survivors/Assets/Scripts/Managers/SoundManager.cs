@@ -11,9 +11,6 @@ public class SoundManager : MonoBehaviour
     private AudioSource musicSource;
     private AudioSource soundEffectsSource;
 
-    private Slider musicSlider;
-    private Slider soundSlider;
-
     // Start is called before the first frame update
     void Awake()
     {

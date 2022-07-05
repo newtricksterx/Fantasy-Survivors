@@ -1107,7 +1107,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Grass
+  m_Text: Dirt
 --- !u!222 &476280549
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4395,6 +4395,14 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2004888377}
+    - target: {fileID: 3134570246920526806, guid: efacc4fbc045b10458ea11659b4dad6c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3134570246920526806, guid: efacc4fbc045b10458ea11659b4dad6c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3134570247416406566, guid: efacc4fbc045b10458ea11659b4dad6c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4483,14 +4491,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: SettingsPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 3134570247416406567, guid: efacc4fbc045b10458ea11659b4dad6c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3134570247791078205, guid: efacc4fbc045b10458ea11659b4dad6c, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2004888377}
+    - target: {fileID: 3134570247836037758, guid: efacc4fbc045b10458ea11659b4dad6c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3134570247836037758, guid: efacc4fbc045b10458ea11659b4dad6c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3134570247836037758, guid: efacc4fbc045b10458ea11659b4dad6c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3134570247919456076, guid: efacc4fbc045b10458ea11659b4dad6c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3134570247919456076, guid: efacc4fbc045b10458ea11659b4dad6c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3134570248235569542, guid: efacc4fbc045b10458ea11659b4dad6c, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2004888377}
+    - target: {fileID: 3134570248239644542, guid: efacc4fbc045b10458ea11659b4dad6c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3134570248239644542, guid: efacc4fbc045b10458ea11659b4dad6c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3134570248239644542, guid: efacc4fbc045b10458ea11659b4dad6c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3905499912272034234, guid: efacc4fbc045b10458ea11659b4dad6c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

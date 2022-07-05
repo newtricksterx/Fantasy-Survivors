@@ -23,6 +23,23 @@ public class MenuManager : MonoBehaviour
 
         musicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
         soundSlider.value = PlayerPrefs.GetFloat("SoundVolume");
+
+        if (PlayerPrefs.HasKey("FullscreenToggle"))
+        {
+            if(PlayerPrefs.GetInt("FullscreenToggle") == 1)
+            {
+                fullScreenToggle.isOn = true;
+            }
+            else
+            {
+                fullScreenToggle.isOn = false;
+            }
+        }
+
+        if (PlayerPrefs.HasKey("Resolution"))
+        {
+            resolutionDropdown.value = resolutionDropdown.options.FindIndex((i) => i.text.Equals(PlayerPrefs.GetString("Resolution")));
+        }
     }
 
     private void Update()
@@ -137,13 +154,22 @@ public class MenuManager : MonoBehaviour
         int width =  int.Parse(splitStrings[0]);
         int height = int.Parse(splitStrings[1]);
 
-        Debug.Log(width);
-
         Screen.SetResolution(width, height, fullScreenToggle.isOn, 60);
 
         SoundManager.instance.GetMusicSource().volume = musicSlider.value;
         SoundManager.instance.GetSoundSource().volume = soundSlider.value;
 
         acceptSettings.SetActive(false);
+
+        PlayerPrefs.SetString("Resolution", resolutionDropdown.options[resolutionDropdown.value].text);
+
+        if (fullScreenToggle.isOn)
+        {
+            PlayerPrefs.SetInt("FullscreenToggle", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("FullscreenToggle", 0);
+        }
     }
 }
