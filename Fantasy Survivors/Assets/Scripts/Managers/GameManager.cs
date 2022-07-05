@@ -53,6 +53,9 @@ public class GameManager : MonoBehaviour
     // menumanager
     public MenuManager menuManager;
 
+    // list of maps
+    public List<GameObject> maps;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -90,6 +93,7 @@ public class GameManager : MonoBehaviour
 
         gameOverBool = false;
 
+        SetMap();
     }
 
     // Update is called once per frame
@@ -224,4 +228,18 @@ public class GameManager : MonoBehaviour
         player.GetComponent<SpriteRenderer>().flipX = CharacterInfoManager.instance.flipPlayer;
     }
 
+    public void SetMap() 
+    { 
+        foreach(GameObject map in maps)
+        {
+            if(map.name == CharacterInfoManager.instance.mapSelected)
+            {
+                map.SetActive(true);
+            }
+            else
+            {
+                map.SetActive(false);
+            }
+        }
+    }
 }

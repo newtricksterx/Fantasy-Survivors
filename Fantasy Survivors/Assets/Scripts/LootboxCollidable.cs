@@ -10,6 +10,7 @@ public class LootboxCollidable : Pickup
         if (coll.gameObject.CompareTag("Player"))
         {
             Time.timeScale = 0f;
+            SoundManager.instance.PlaySoundClip(playOnPickup);
             GameManager.instance.lootboxPanel.transform.position = GameObject.Find("Player").transform.position;
             GameManager.instance.lootboxPanel.SetActive(true);
 

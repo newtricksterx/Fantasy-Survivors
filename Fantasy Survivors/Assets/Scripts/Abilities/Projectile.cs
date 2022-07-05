@@ -39,7 +39,7 @@ public class Projectile : Collidable
 
             string msg = damageToDeal.ToString(); 
 
-            GameManager.instance.ShowText(msg, 20, Color.white, coll.transform.position, Vector3.zero, 1f);
+            GameManager.instance.ShowText(msg, 22, Color.white, coll.transform.position, Vector3.zero, 1f);
 
             Destroy(gameObject);
         }

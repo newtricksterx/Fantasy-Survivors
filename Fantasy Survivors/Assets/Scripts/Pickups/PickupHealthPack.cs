@@ -15,7 +15,7 @@ public class PickupHealthPack : Pickup
 
             string msg = "+ " + hpToAdd.ToString();
 
-            GameManager.instance.ShowText(msg, 20, Color.green, player.transform.position, Vector3.zero, 1);
+            GameManager.instance.ShowText(msg, 22, Color.green, player.transform.position, Vector3.zero, 1);
             Destroy(gameObject);
         }
     }

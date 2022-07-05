@@ -11,6 +11,8 @@ public class CharacterInfoManager : MonoBehaviour
     public GameObject startingAbility;
     public bool flipPlayer;
 
+    public string mapSelected;
+
     // Start is called before the first frame update
     void Awake()
     {

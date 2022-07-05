@@ -139,4 +139,4 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   instanceDuration: 360
-  playOnPickup: {fileID: 8300000, guid: 9145bd57220f85d4b98488c77d3c4047, type: 3}
+  playOnPickup: {fileID: 8300000, guid: 47a5bb75eade91448b0e8b05bcff1b4e, type: 3}

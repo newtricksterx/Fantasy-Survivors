@@ -8,8 +8,6 @@ public class MenuManager : MonoBehaviour
 {
     public List<GameObject> panels;
 
-    public GameObject mapSelected;
-
     public AudioClip buttonSoundEffect;
 
     public Dropdown resolutionDropdown;
@@ -60,14 +58,14 @@ public class MenuManager : MonoBehaviour
 
     public void OnMapSelected(GameObject map)
     {
-        mapSelected = map;
+        CharacterInfoManager.instance.mapSelected = map.name;
     }
 
     public void OnConfirmMapSelection(GameObject panel)
     {
         SoundManager.instance.PlaySoundClip(buttonSoundEffect);
 
-        if (mapSelected != null)
+        if (CharacterInfoManager.instance.mapSelected != null)
         {
             SetActivePanel(panel);
         }
@@ -82,7 +80,7 @@ public class MenuManager : MonoBehaviour
 
         if (CharacterInfoManager.instance.characterSprite != null)
         {
-            SceneManager.LoadScene(mapSelected.name);
+            SceneManager.LoadScene("Main");
         }
     }
 
