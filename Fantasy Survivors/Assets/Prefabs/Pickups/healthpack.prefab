@@ -73,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1806283193
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 1694979661, guid: c1aff41ecc76ec44d9056771f79405c4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -139,4 +139,5 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   instanceDuration: 60
+  playOnPickup: {fileID: 8300000, guid: 25efa30bfb8c7154d83c6c272fddda61, type: 3}
   hpToAdd: 2

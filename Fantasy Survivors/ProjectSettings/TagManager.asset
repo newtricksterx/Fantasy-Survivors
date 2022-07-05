@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - PlayerHitbox
+  - Walls
   layers:
   - Default
   - TransparentFX
@@ -45,6 +46,9 @@ TagManager:
     locked: 0
   - name: Floor
     uniqueID: 2593305089
+    locked: 0
+  - name: Floor2
+    uniqueID: 1014901445
     locked: 0
   - name: Walls
     uniqueID: 1187720169

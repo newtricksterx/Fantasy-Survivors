@@ -6,6 +6,8 @@ public class Pickup : Collidable
 {
     public float instanceDuration;
 
+    public AudioClip playOnPickup;
+
     protected GameObject player;
 
     private float timeToDespawn;
@@ -25,5 +27,13 @@ public class Pickup : Collidable
         }
 
         base.Update();
+    }
+
+    public void PlayPickupSound()
+    {
+        if(SoundManager.instance != null)
+        {
+            SoundManager.instance.PlaySoundClip(playOnPickup);
+        }
     }
 }

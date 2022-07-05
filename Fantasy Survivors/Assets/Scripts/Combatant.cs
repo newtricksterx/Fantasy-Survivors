@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Combatant : MovingObject
 {
     public float maxHP;
+    public AudioClip hitSound;
     [SerializeField] protected float hp;
     protected HurtEffect hurtEffect;
 
@@ -39,5 +40,6 @@ public abstract class Combatant : MovingObject
     protected virtual void ReceiveDamage(Damage damage)
     {
         hp -= damage.damageToDeal;
+        SoundManager.instance.PlaySoundClip(hitSound);
     }
 }

@@ -41,15 +41,28 @@ public class GameManager : MonoBehaviour
     // game over panel
     public GameObject gameOverPanel;
 
+    // set the music
+    public AudioClip audioClip;
 
+    // sound effect on level up
+    public AudioClip levelUpSound;
+
+    //game over bool
+    private bool gameOverBool;
+
+    // menumanager
+    public MenuManager menuManager;
 
     // Start is called before the first frame update
     void Awake()
     {
         instance = this;
 
+        Time.timeScale = 1f;
+
         if (CharacterInfoManager.instance != null)
         {
+            Debug.Log("set character");
             SetCharacterInfo();
         }
 
@@ -64,6 +77,19 @@ public class GameManager : MonoBehaviour
         player = GameObject.Find("Player");
 
         abilitiesPicked = new List<GameObject>();
+
+        if(SoundManager.instance != null)
+        {
+            if(audioClip != null)
+            {
+                SoundManager.instance.SetMusic(audioClip);
+            }
+
+            SoundManager.instance.GetSoundSource().Stop();
+        }
+
+        gameOverBool = false;
+
     }
 
     // Update is called once per frame
@@ -73,12 +99,22 @@ public class GameManager : MonoBehaviour
 
         IsGameOver();
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !pauseMenu.activeInHierarchy)
+        bool isPanelActive = false;
+
+        foreach(GameObject panel in menuManager.panels)
+        {
+            if (panel.activeInHierarchy)
+            {
+                isPanelActive = true;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && !isPanelActive)
         {
             pauseMenu.SetActive(true);
             Time.timeScale = 0f;
         }
-        else if(Input.GetKeyDown(KeyCode.Escape) && pauseMenu.activeInHierarchy)
+        else if(Input.GetKeyDown(KeyCode.Escape) && isPanelActive && pauseMenu.activeInHierarchy)
         {
             pauseMenu.SetActive(false);
             Time.timeScale = 1f;
@@ -87,7 +123,12 @@ public class GameManager : MonoBehaviour
 
     void UpdateTime()
     {
-        timeText.text = (Mathf.Round(Time.timeSinceLevelLoad)).ToString();
+        int minutes = Mathf.FloorToInt(Time.timeSinceLevelLoad/60);
+        int seconds = Mathf.FloorToInt(Time.timeSinceLevelLoad - minutes * 60);
+        string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
+
+        timeText.text = niceTime;
+        //timeText.text = (Mathf.Round(Time.timeSinceLevelLoad)).ToString();
     }
 
     public void ShowText(string msg, int fontsize, Color color, Vector3 position, Vector3 motion, float duration)
@@ -112,6 +153,8 @@ public class GameManager : MonoBehaviour
     public void OnLevelUp()
     {
         //Debug.Log(xpTableIndex);
+        SoundManager.instance.PlaySoundClip(levelUpSound);
+
         experienceBar.SetMaxExp(xpTable[xpTableIndex]);
         experienceBar.SetLevelText(xpTableIndex);
 
@@ -141,15 +184,20 @@ public class GameManager : MonoBehaviour
 
     public void IsGameOver()
     {
-        if(GameObject.Find("Player") == null)
+        if(GameObject.Find("Player") == null && !gameOverBool)
         {
+            SoundManager.instance.StopMusic();
+            SoundManager.instance.SetMusic(SoundManager.instance.gameOverSound);
+
+            gameOverBool = true;
+
             StartCoroutine(GameOver());
         }
     }
 
     public IEnumerator GameOver()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2);
 
         gameOverPanel.SetActive(true);
         Time.timeScale = 0f;
@@ -175,4 +223,5 @@ public class GameManager : MonoBehaviour
 
         player.GetComponent<SpriteRenderer>().flipX = CharacterInfoManager.instance.flipPlayer;
     }
+
 }

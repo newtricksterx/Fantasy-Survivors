@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LootboxCollidable : Collidable
+public class LootboxCollidable : Pickup
 {
-
     protected override void OnCollide(Collider2D coll)
     {
         if (coll.gameObject.CompareTag("Player"))

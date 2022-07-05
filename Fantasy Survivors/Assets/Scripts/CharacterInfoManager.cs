@@ -11,16 +11,17 @@ public class CharacterInfoManager : MonoBehaviour
     public GameObject startingAbility;
     public bool flipPlayer;
 
-
     // Start is called before the first frame update
     void Awake()
     {
-        if(instance != null)
+        if(instance != null && instance != this)
         {
             Destroy(gameObject);
         }
-
-        instance = this;
+        else
+        {
+            instance = this;
+        }
     }
 
     public void SetSprite(Sprite charSprite)

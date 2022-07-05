@@ -43,5 +43,10 @@ public class Projectile : Collidable
 
             Destroy(gameObject);
         }
+
+        if (coll.gameObject.CompareTag("Walls"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -10,6 +10,7 @@ public class PickupExperience : Pickup
     {
         if (coll.gameObject.CompareTag("Player"))
         {
+            PlayPickupSound();
             GameManager.instance.GrantXP(experienceOnPickup);
             Destroy(gameObject);
         }

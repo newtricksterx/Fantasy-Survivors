@@ -7,21 +7,12 @@ public class ProjectilePulse : Projectile
     private Transform player;
     private float xScale;
 
-    public float xMax;
-    public float xMin;
-    public float yMax;
-    public float yMin;
-
     private Enemy[] listOfEnemies;
     private Enemy randomEnemy;
 
     protected override void Awake()
     {
         base.Awake();
-
-        //player = GameObject.Find("Player").transform;
-        //xScale = player.localScale.x;
-        //transform.localScale = new Vector3(xScale * transform.localScale.x, transform.localScale.y, 1);
 
         listOfEnemies = GameObject.FindObjectsOfType<Enemy>();
         randomEnemy = listOfEnemies[Random.Range(0, listOfEnemies.Length)];
@@ -31,7 +22,6 @@ public class ProjectilePulse : Projectile
     {
         base.Update();
         ToMove();
-        DestroyOutOfBounds();
     }
 
     public override void ToMove()
@@ -47,18 +37,5 @@ public class ProjectilePulse : Projectile
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         transform.position = Vector2.MoveTowards(transform.position, randomEnemy.transform.position, projectileSpeed * Time.deltaTime);
-    }
-
-    protected virtual void DestroyOutOfBounds()
-    {
-        if (transform.position.y > yMax || transform.position.y < yMin)
-        {
-            Destroy(gameObject);
-        }
-
-        if (transform.position.x > xMax || transform.position.x < xMin)
-        {
-            Destroy(gameObject);
-        }
     }
 }

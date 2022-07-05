@@ -6,11 +6,6 @@ public class Shuriken : Projectile
 {
     public List<float> levelEffect2;
 
-    public float xMax;
-    public float xMin;
-    public float yMax;
-    public float yMin;
-
     public float xInput;
     public float yInput;
 
@@ -39,21 +34,7 @@ public class Shuriken : Projectile
     protected override void Update()
     {
         base.Update();
-        DestroyOutOfBounds();
         ToMove();
-    }
-
-    protected virtual void DestroyOutOfBounds()
-    {
-        if (transform.position.y > yMax || transform.position.y < yMin)
-        {
-            Destroy(gameObject);
-        }
-
-        if (transform.position.x > xMax || transform.position.x < xMin)
-        {
-            Destroy(gameObject);
-        }
     }
 
     public override void ToMove()

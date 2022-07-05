@@ -7,6 +7,7 @@ public class Blade : Ability
     public float damageToDeal;
     public float slashCooldown;
     public Slash slash;
+    public AudioClip slashSoundEffect;
 
     private float slashTime;
 
@@ -33,6 +34,7 @@ public class Blade : Ability
 
     void Slash()
     {
+        SoundManager.instance.PlaySoundClip(slashSoundEffect);
         slash.SlashEffect(damageToDeal);
     }
 }

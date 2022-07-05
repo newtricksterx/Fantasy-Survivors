@@ -5,6 +5,7 @@ using UnityEngine;
 public class BlastPulse : Ability
 {
     public GameObject abilityToSpawn;
+    public AudioClip pulseSoundEffect;
 
     // Start is called before the first frame update
     public float pulseCooldown = 1f;
@@ -24,6 +25,7 @@ public class BlastPulse : Ability
     {
         if (GameManager.instance.player != null && Time.time - pulseCooldown >= afterPulseShotTime && GameObject.FindGameObjectsWithTag("Enemy").Length > 0 && GameObject.FindObjectsOfType<ProjectilePulse>().Length == 0)
         {
+            SoundManager.instance.PlaySoundClip(pulseSoundEffect);
             Instantiate(abilityToSpawn, GameManager.instance.player.transform.position, Quaternion.identity);
             afterPulseShotTime = Time.time;
         }

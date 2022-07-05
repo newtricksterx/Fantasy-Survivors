@@ -10,6 +10,7 @@ public class PickupHealthPack : Pickup
     {
         if (coll.gameObject.CompareTag("Player"))
         {
+            PlayPickupSound();
             player.GetComponent<Player>().GrantHP(hpToAdd);
 
             string msg = "+ " + hpToAdd.ToString();
