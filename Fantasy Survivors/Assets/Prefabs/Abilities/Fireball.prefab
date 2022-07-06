@@ -142,7 +142,7 @@ MonoBehaviour:
   - 2.6
   - 2.8
   - 3
-  damageToDeal: 1
+  damageToDeal: 2.5
   rotateSpeed: 2
   distance: 1
 --- !u!58 &6883371833024619013
