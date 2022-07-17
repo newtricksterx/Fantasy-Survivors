@@ -47,6 +47,7 @@ public class EnemyUndeadBoss : Enemy
 
     IEnumerator DestroyGameObject()
     {
+        movementSpeed = 0f;
         yield return new WaitForSeconds(3f);
         Destroy(gameObject);
     }

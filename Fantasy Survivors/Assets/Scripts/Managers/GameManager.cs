@@ -59,6 +59,10 @@ public class GameManager : MonoBehaviour
     // object enemy pooler
     public GameObject enemyPooler;
 
+    // kill count 
+    private int killCount;
+    public Text killCountText;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -97,6 +101,8 @@ public class GameManager : MonoBehaviour
         gameOverBool = false;
 
         SetMap();
+
+        SetKillCount();
     }
 
     // Update is called once per frame
@@ -261,5 +267,15 @@ public class GameManager : MonoBehaviour
         }
 
         Destroy(enemy.gameObject);
+    }
+
+    public void AddToKillCount()
+    {
+        killCount++;
+    }
+
+    public void SetKillCount()
+    {
+        killCountText.text = killCount.ToString();
     }
 }

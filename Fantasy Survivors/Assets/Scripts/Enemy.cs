@@ -45,8 +45,10 @@ public class Enemy : Combatant
 
     protected override void Death()
     {
-        base.Death();
+        GameManager.instance.AddToKillCount();
+        GameManager.instance.SetKillCount();
         Drop();
+        base.Death();
 
         this.gameObject.SetActive(false);
         GameManager.instance.DespawnEnemyObject(this);

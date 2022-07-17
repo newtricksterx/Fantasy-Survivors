@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnAbilities : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class SpawnAbilities : MonoBehaviour
     public void EnableAbility()
     {
         enableAbility = true;
+        Image slot = AbilityListManager.instance.GetEmptySlot();
+        slot.sprite = GetComponent<SpriteRenderer>().sprite;
+        slot.gameObject.SetActive(true);
     }
 
     public void DisableAbility()
